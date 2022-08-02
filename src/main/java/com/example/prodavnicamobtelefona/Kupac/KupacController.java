@@ -1,5 +1,6 @@
 package com.example.prodavnicamobtelefona.Kupac;
 
+import com.example.prodavnicamobtelefona.Adresa.Adresa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,6 +31,12 @@ public class KupacController {
     @RequestMapping(value = "/kupci/{id}",method = RequestMethod.DELETE)
     public void removeCustomer(@PathVariable int id){
         service.removeCustomer(id);
+    }
+
+    @RequestMapping(value = "/adrese/{id}/kupci",method = RequestMethod.POST)
+    public void addCustomer(@RequestBody Kupac kupac,@PathVariable int id){
+        kupac.setAdresa(new Adresa(id,"",""));
+        service.addCustomer(kupac);
     }
 
 }
