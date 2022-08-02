@@ -1,5 +1,6 @@
 package com.example.prodavnicamobtelefona.Mesto;
 
+import com.example.prodavnicamobtelefona.Drzava.Drzava;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,6 +31,11 @@ public class MestoController {
     @RequestMapping(value = "/mesta/{id}",method = RequestMethod.DELETE)
     public void removePlace(@PathVariable int id){
         service.removePlace(id);
+    }
+    @RequestMapping(value = "/drzave/{id}/mesta",method = RequestMethod.POST)
+    public void addPlace(@RequestBody Mesto mesto,@PathVariable int id){
+        mesto.setDrzava(new Drzava(id,""));
+        service.addPlace(mesto);
     }
 
 }
