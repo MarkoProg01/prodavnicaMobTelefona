@@ -1,7 +1,11 @@
 package com.example.prodavnicamobtelefona.Adresa;
 
+import com.example.prodavnicamobtelefona.Mesto.Mesto;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Adresa {
@@ -9,6 +13,17 @@ public class Adresa {
     private int id;
     private String ulica;
     private String broj;
+    @ManyToOne
+    @JoinColumn(name = "mesto_id")
+    private Mesto mesto;
+
+    public Mesto getMesto() {
+        return mesto;
+    }
+
+    public void setMesto(Mesto mesto) {
+        this.mesto = mesto;
+    }
 
     public Adresa() {
     }
@@ -42,4 +57,6 @@ public class Adresa {
     public void setBroj(String broj) {
         this.broj = broj;
     }
+
+
 }
