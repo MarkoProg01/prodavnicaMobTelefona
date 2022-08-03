@@ -1,7 +1,9 @@
-package com.example.prodavnicamobtelefona.Racun;
+package com.example.prodavnicamobtelefona.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Racun {
@@ -9,6 +11,28 @@ public class Racun {
     private int id;
     private int ukupna_cena;
     private int kolicina;
+    @ManyToOne
+    @JoinColumn(name = "mobilni_id")
+    private Mobilni mobilni;
+    @ManyToOne
+    @JoinColumn(name = "kupac_id")
+    private Kupac kupac;
+
+    public Kupac getKupac() {
+        return kupac;
+    }
+
+    public void setKupac(Kupac kupac) {
+        this.kupac = kupac;
+    }
+
+    public Mobilni getMobilni() {
+        return mobilni;
+    }
+
+    public void setMobilni(Mobilni mobilni) {
+        this.mobilni = mobilni;
+    }
 
     public Racun() {
     }

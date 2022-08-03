@@ -1,5 +1,7 @@
-package com.example.prodavnicamobtelefona.Racun;
+package com.example.prodavnicamobtelefona.service;
 
+import com.example.prodavnicamobtelefona.entity.Racun;
+import com.example.prodavnicamobtelefona.repository.RacunRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +34,10 @@ public class RacunService {
 
     public void removeBill(int id){
         repository.deleteById(id);
+    }
+
+    public void addBillMobile(Racun racun){
+        repository.save(racun);
     }
 
 

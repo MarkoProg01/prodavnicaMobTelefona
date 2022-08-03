@@ -1,5 +1,7 @@
-package com.example.prodavnicamobtelefona.Adresa;
+package com.example.prodavnicamobtelefona.service;
 
+import com.example.prodavnicamobtelefona.repository.AdresaRepository;
+import com.example.prodavnicamobtelefona.entity.Adresa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

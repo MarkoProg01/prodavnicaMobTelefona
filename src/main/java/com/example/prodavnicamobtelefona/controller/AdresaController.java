@@ -1,6 +1,8 @@
-package com.example.prodavnicamobtelefona.Adresa;
+package com.example.prodavnicamobtelefona.controller;
 
-import com.example.prodavnicamobtelefona.Mesto.Mesto;
+import com.example.prodavnicamobtelefona.service.AdresaService;
+import com.example.prodavnicamobtelefona.entity.Adresa;
+import com.example.prodavnicamobtelefona.entity.Mesto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

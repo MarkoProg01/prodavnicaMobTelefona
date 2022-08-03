@@ -1,5 +1,6 @@
-package com.example.prodavnicamobtelefona.Kupac;
+package com.example.prodavnicamobtelefona.repository;
 
+import com.example.prodavnicamobtelefona.entity.Kupac;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

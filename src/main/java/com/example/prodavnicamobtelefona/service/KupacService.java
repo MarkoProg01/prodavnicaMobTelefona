@@ -1,5 +1,7 @@
-package com.example.prodavnicamobtelefona.Kupac;
+package com.example.prodavnicamobtelefona.service;
 
+import com.example.prodavnicamobtelefona.entity.Kupac;
+import com.example.prodavnicamobtelefona.repository.KupacRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

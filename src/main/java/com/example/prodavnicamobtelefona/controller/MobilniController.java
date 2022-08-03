@@ -1,5 +1,7 @@
-package com.example.prodavnicamobtelefona.Mobilni;
+package com.example.prodavnicamobtelefona.controller;
 
+import com.example.prodavnicamobtelefona.service.MobilniService;
+import com.example.prodavnicamobtelefona.entity.Mobilni;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

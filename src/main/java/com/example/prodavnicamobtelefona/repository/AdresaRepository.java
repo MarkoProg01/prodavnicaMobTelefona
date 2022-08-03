@@ -1,5 +1,6 @@
-package com.example.prodavnicamobtelefona.Adresa;
+package com.example.prodavnicamobtelefona.repository;
 
+import com.example.prodavnicamobtelefona.entity.Adresa;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

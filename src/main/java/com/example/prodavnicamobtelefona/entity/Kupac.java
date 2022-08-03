@@ -1,6 +1,4 @@
-package com.example.prodavnicamobtelefona.Kupac;
-
-import com.example.prodavnicamobtelefona.Adresa.Adresa;
+package com.example.prodavnicamobtelefona.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
