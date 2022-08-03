@@ -3,33 +3,36 @@ package com.example.prodavnicamobtelefona.controller;
 import com.example.prodavnicamobtelefona.service.DrzavaService;
 import com.example.prodavnicamobtelefona.entity.Drzava;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping(value = "/drzave")
 public class DrzavaController {
 
     @Autowired
     DrzavaService service;
-    @RequestMapping("/drzave")
+    @GetMapping
     public List<Drzava> getAllCountries(){
         return service.getAllCountries();
     }
-    @RequestMapping("/drzave/{id}")
+    @GetMapping("{id}")
     public Optional<Drzava> getCountryById(@PathVariable int id){
         return service.getCountryById(id);
     }
-    @RequestMapping(value = "/drzave",method = RequestMethod.POST)
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public void addCountry(@RequestBody Drzava drzava){
         service.addCountry(drzava);
     }
-    @RequestMapping(value = "/drzave",method = RequestMethod.PUT)
+    @PutMapping
     public void updateCountry(@RequestBody Drzava drzava){
         service.updateCountry(drzava);
     }
-    @RequestMapping(value = "/drzave/{id}",method = RequestMethod.DELETE)
+    @DeleteMapping("{id}")
     public void removeCountry(@PathVariable int id){
         service.removeCountry(id);
     }
