@@ -1,5 +1,6 @@
 package com.example.prodavnicamobtelefona.entity;
 
+import com.sun.istack.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -12,6 +13,7 @@ public class Racun {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @NotNull
     private int ukupna_cena;
     private int kolicina;
     @ManyToOne
