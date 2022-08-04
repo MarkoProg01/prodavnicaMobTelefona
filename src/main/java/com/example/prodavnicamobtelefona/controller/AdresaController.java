@@ -1,44 +1,49 @@
 package com.example.prodavnicamobtelefona.controller;
 
+import com.example.prodavnicamobtelefona.dto.AdresaDto;
+import com.example.prodavnicamobtelefona.dto.RacunDto;
+import com.example.prodavnicamobtelefona.entity.Drzava;
+import com.example.prodavnicamobtelefona.entity.Racun;
 import com.example.prodavnicamobtelefona.service.AdresaService;
 import com.example.prodavnicamobtelefona.entity.Adresa;
 import com.example.prodavnicamobtelefona.entity.Mesto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/adrese")
 public class AdresaController {
 
     @Autowired
-    AdresaService service;
-    @RequestMapping("/adrese")
-    public List<Adresa> getAllPlaces(){
-        return service.getAllAdress();
-    }
-    @RequestMapping("/adrese/{id}")
-    public Optional<Adresa> getPlacesById(@PathVariable int id){
-        return service.getAdressById(id);
-    }
-    @RequestMapping(value = "/adrese",method = RequestMethod.POST)
-    public void addPlace(@RequestBody Adresa adresa){
-        service.addAdress(adresa);
-    }
-    @RequestMapping(value = "/adrese",method = RequestMethod.PUT)
-    public void updatePlace(@RequestBody Adresa adresa){
-        service.updateAdress(adresa);
-    }
-    @RequestMapping(value = "/adrese/{id}",method = RequestMethod.DELETE)
-    public void removePlace(@PathVariable int id){
-        service.removeAdress(id);
+    private AdresaService service;
+
+    public AdresaController(AdresaService service) {
+        this.service = service;
     }
 
-    @RequestMapping(value = "/mesta/{id}/adrese",method = RequestMethod.POST)
-    public void addPlace(@RequestBody Adresa adresa,@PathVariable int id){
-        adresa.setMesto(new Mesto(id,""));
-        service.addAdress(adresa);
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<AdresaDto> getAll(){
+        return service.findAll();
+    }
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    public AdresaDto create(@RequestBody Adresa adresa){
+        return service.save(adresa);
+    }
+    @PutMapping
+    @ResponseStatus(HttpStatus.OK)
+    public AdresaDto update(@RequestBody Adresa adresa){
+        return service.save(adresa);
+    }
+    @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void delete(@PathVariable("id") int id){
+        service.delete(id);
     }
 
 }

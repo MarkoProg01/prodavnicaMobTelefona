@@ -1,39 +1,50 @@
 package com.example.prodavnicamobtelefona.service;
 
+import com.example.prodavnicamobtelefona.dto.DrzavaDto;
+import com.example.prodavnicamobtelefona.dto.MestoDto;
+import com.example.prodavnicamobtelefona.dto.RacunDto;
 import com.example.prodavnicamobtelefona.entity.Drzava;
+import com.example.prodavnicamobtelefona.entity.Mesto;
 import com.example.prodavnicamobtelefona.repository.DrzavaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class DrzavaService {
     @Autowired
-    DrzavaRepository repository;
+    private DrzavaRepository repository;
 
-    public DrzavaService() {
+    public DrzavaService(DrzavaRepository repository) {
+        this.repository = repository;
     }
 
-    public List<Drzava> getAllCountries(){
-        return repository.findAll();
+    public List<DrzavaDto> generateList(Iterable<Drzava> elements){
+        List<DrzavaDto> newList = new ArrayList<>();
+        elements.forEach(element -> {
+            newList.add(this.convertToDto(element));
+        });
+        return newList;
+
     }
 
-    public Optional<Drzava> getCountryById(int id){
-        return repository.findById(id);
+    public List<DrzavaDto> findAll(){
+        return this.generateList(repository.findAll());
     }
-
-    public void addCountry(Drzava drzava){
-        repository.save(drzava);
-    }
-
-    public void updateCountry(Drzava drzava){
-        repository.save(drzava);
-    }
-
-    public void removeCountry(int id){
+    public void delete(int id){
         repository.deleteById(id);
+    }
+    public DrzavaDto save(Drzava drzava){
+        return convertToDto(repository.save(drzava));
+    }
+
+
+
+    public DrzavaDto convertToDto(Drzava drzava){
+        return new DrzavaDto(drzava);
     }
 
 

@@ -1,5 +1,8 @@
 package com.example.prodavnicamobtelefona.controller;
 
+import com.example.prodavnicamobtelefona.dto.DrzavaDto;
+import com.example.prodavnicamobtelefona.dto.RacunDto;
+import com.example.prodavnicamobtelefona.entity.Racun;
 import com.example.prodavnicamobtelefona.service.DrzavaService;
 import com.example.prodavnicamobtelefona.entity.Drzava;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,27 +17,31 @@ import java.util.Optional;
 public class DrzavaController {
 
     @Autowired
-    DrzavaService service;
-    @GetMapping
-    public List<Drzava> getAllCountries(){
-        return service.getAllCountries();
+    private DrzavaService service;
+
+    public DrzavaController(DrzavaService service) {
+        this.service = service;
     }
-    @GetMapping("{id}")
-    public Optional<Drzava> getCountryById(@PathVariable int id){
-        return service.getCountryById(id);
+
+    @GetMapping
+    @ResponseStatus(HttpStatus.OK)
+    public List<DrzavaDto> getAll(){
+        return service.findAll();
     }
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void addCountry(@RequestBody Drzava drzava){
-        service.addCountry(drzava);
+    public DrzavaDto create(@RequestBody Drzava drzava){
+        return service.save(drzava);
     }
     @PutMapping
-    public void updateCountry(@RequestBody Drzava drzava){
-        service.updateCountry(drzava);
+    @ResponseStatus(HttpStatus.OK)
+    public DrzavaDto update(@RequestBody Drzava drzava){
+        return service.save(drzava);
     }
     @DeleteMapping("{id}")
-    public void removeCountry(@PathVariable int id){
-        service.removeCountry(id);
+    @ResponseStatus(HttpStatus.OK)
+    public void delete(@PathVariable("id") int id){
+        service.delete(id);
     }
 
 }

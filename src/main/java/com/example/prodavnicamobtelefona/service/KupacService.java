@@ -1,39 +1,50 @@
 package com.example.prodavnicamobtelefona.service;
 
+import com.example.prodavnicamobtelefona.dto.KupacDto;
+import com.example.prodavnicamobtelefona.dto.MestoDto;
+import com.example.prodavnicamobtelefona.dto.RacunDto;
 import com.example.prodavnicamobtelefona.entity.Kupac;
+import com.example.prodavnicamobtelefona.entity.Mesto;
 import com.example.prodavnicamobtelefona.repository.KupacRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class KupacService {
     @Autowired
-    KupacRepository repository;
+    private KupacRepository repository;
 
-    public KupacService() {
+    public KupacService(KupacRepository repository) {
+        this.repository = repository;
     }
 
-    public List<Kupac> getAllCustomers(){
-        return repository.findAll();
+    public List<KupacDto> generateList(Iterable<Kupac> elements){
+        List<KupacDto> newList = new ArrayList<>();
+        elements.forEach(element -> {
+            newList.add(this.convertToDto(element));
+        });
+        return newList;
+
     }
 
-    public Optional<Kupac> getCustomerById(int id){
-        return repository.findById(id);
+    public List<KupacDto> findAll(){
+        return this.generateList(repository.findAll());
     }
-
-    public void addCustomer(Kupac kupac){
-        repository.save(kupac);
-    }
-
-    public void updateCustomer(Kupac kupac){
-        repository.save(kupac);
-    }
-
-    public void removeCustomer(int id){
+    public void delete(int id){
         repository.deleteById(id);
+    }
+    public KupacDto save(Kupac kupac){
+        return convertToDto(repository.save(kupac));
+    }
+
+
+
+    public KupacDto convertToDto(Kupac kupac){
+        return new KupacDto(kupac);
     }
 
 
