@@ -15,8 +15,6 @@ public class Mesto {
     private int id;
     private String nazivMesta;
     @ManyToOne
-    @JoinColumn(name = "drzava_id")
-    @NotNull
     private Drzava drzava;
 
 

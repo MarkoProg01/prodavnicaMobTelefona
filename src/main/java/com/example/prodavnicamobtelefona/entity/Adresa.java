@@ -16,7 +16,6 @@ public class Adresa {
     private String ulica;
     private String broj;
     @ManyToOne
-    @JoinColumn(name = "mesto_id")
     private Mesto mesto;
 
 

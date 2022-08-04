@@ -15,7 +15,6 @@ public class Kupac {
     private String ime;
     private String prezime;
     @ManyToOne
-    @JoinColumn(name = "adresa_id")
     private Adresa adresa;
 
 }
