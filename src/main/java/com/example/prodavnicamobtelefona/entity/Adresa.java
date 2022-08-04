@@ -1,15 +1,17 @@
 package com.example.prodavnicamobtelefona.entity;
 
 import com.example.prodavnicamobtelefona.entity.Mesto;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
+@Data
+@NoArgsConstructor
 public class Adresa {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String ulica;
     private String broj;
@@ -25,8 +27,6 @@ public class Adresa {
         this.mesto = mesto;
     }
 
-    public Adresa() {
-    }
 
     public Adresa(int id, String ulica, String broj) {
         this.id = id;

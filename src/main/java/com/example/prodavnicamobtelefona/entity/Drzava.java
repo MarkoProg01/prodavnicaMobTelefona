@@ -1,16 +1,22 @@
 package com.example.prodavnicamobtelefona.entity;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
+@Data
+@NoArgsConstructor
 public class Drzava {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nazivDrzave;
 
-    public Drzava() {
-    }
 
     public Drzava(Integer id, String nazivDrzave) {
         this.id = id;

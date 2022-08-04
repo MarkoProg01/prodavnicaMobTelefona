@@ -15,6 +15,7 @@ public class RacunDto {
     private Mobilni mobilni;
     private Kupac kupac;
 
+
     public RacunDto(Racun racun) {
         this.id = racun.getId();
         this.ukupna_cena = racun.getUkupna_cena();

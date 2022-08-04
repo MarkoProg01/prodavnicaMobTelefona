@@ -1,18 +1,25 @@
 package com.example.prodavnicamobtelefona.entity;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
+@Data
+@NoArgsConstructor
 public class Mobilni {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String marka;
     private String model;
     private String cena;
 
-    public Mobilni() {
-    }
+
 
     public Mobilni(int id, String marka, String model, String cena) {
         this.id = id;
